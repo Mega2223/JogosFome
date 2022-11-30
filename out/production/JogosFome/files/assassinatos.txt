@@ -1,0 +1,12 @@
+%s matou %s a cajadadas.
+%s devorou %s.
+%s matou %s na paulada.
+%s atirou em %s até a morte.
+%s urinou na boca de %s até ele morrer asfixiado.
+%s mostrou um meme cringe para %s, causando o mesmo suicidar-se
+%s voltou no tempo e cortou o pau do pai de %s, fazendo ele nunca ter nascido.
+%s assasinou %s maniacamente com uma faca.
+%s matou a mãe de %s antes dele ser parido, ele voltou ao estado de esperma.
+%s deu exposed no %s e ele foi morto por militantes.
+%s e %s trocaram tiros com %s e %s, a primeira dupla ganhou.
+%s e %s lutaram com %s e %s, a primeira dupla ganhou.

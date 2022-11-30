@@ -1,0 +1,6 @@
+%s chora até dormir.
+%s tenta dormir, mas eles não param de o perseguir.
+%s está com insónia.
+%s dorme e sonha com a vitória
+%s não consegue dormir devido aos barulhos da noite.
+%s opta por não dormir

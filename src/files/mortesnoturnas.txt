@@ -1,0 +1,3 @@
+%s tenta acender uma fogueira para dormir quente, mas sem êxito, morrendo de hipotermia enquanto dormia.
+%s tenta dormir, mas é atacado por animais silvestres
+%s dorme e é picado por um mosquito com malária e morre ali mesmo.

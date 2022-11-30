@@ -1,0 +1,8 @@
+%s está pensando na vitória.
+%s está com fome por sangue.
+%s está sofrendo com alucinações.
+%s quer voltar para casa
+%s está à procura de outros participantes.
+%s está pensando seriamente em suícidio.
+%s questiona a sua sanidade
+%s se pergunta se realmente vale a pena.

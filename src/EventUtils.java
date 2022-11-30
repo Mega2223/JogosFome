@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class EventUtils {
     public static List<Event> genEvents() throws IOException {
@@ -54,6 +55,82 @@ public class EventUtils {
             ret.add(new Event() {
                 @Override
                 public String doEvent(Game game, Player[] players) {
+                    return doDefaultEventLogic(getDescription(),players);
+                }
+
+                @Override
+                public String getDescription() {
+                    return act;
+                }
+            });
+        }
+
+        String[] lowSanityEv = FileUtils.loadTextFile("lowsanityevents.txt").split("\n");
+        for(String act : lowSanityEv){
+            ret.add(new Event() {
+                @Override
+                public String doEvent(Game game, Player[] players) {
+                    return doDefaultEventLogic(getDescription(),players);
+                }
+
+                @Override
+                public boolean canDo(Player[] players) {
+                    return players.length == 0 && players[0].sanity < Constants.GLOBAL_INSANITY_THREASHOLD;
+                }
+
+                @Override
+                public String getDescription() {
+                    return act;
+                }
+            });
+        }
+
+        String[] allDieEv = FileUtils.loadTextFile("mortes coletivas.txt").split("\n");
+        for(String act : allDieEv){
+            ret.add(new Event() {
+                @Override
+                public String doEvent(Game game, Player[] players) {
+                    for (int i = 0; i < players.length; i++) {
+                        players[i].kill();
+                    }
+                    return doDefaultEventLogic(getDescription(),players);
+                }
+
+                @Override
+                public String getDescription() {
+                    return act;
+                }
+            });
+        }
+
+        String[] nightTimeDeathsEv = FileUtils.loadTextFile("mortes coletivas.txt").split("\n");
+        for (String act: nightTimeDeathsEv){
+            ret.add(new Event() {
+                @Override
+                public String doEvent(Game game, Player[] players) {
+                    return doDefaultEventLogic(getDescription(),players);
+                }
+
+                @Override
+                public String getDescription() {
+                    return act;
+                }
+
+                @Override
+                public boolean isDuringTheDay() {
+                    return false;
+                }
+            });
+        }
+
+        String[] arrestedEv = FileUtils.loadTextFile("prisao.txt").split("\n");
+        for(String act : arrestedEv){
+            ret.add(new Event() {
+                @Override
+                public String doEvent(Game game, Player[] players) {
+                    for (int i = 0; i < players.length; i++) {
+                        players[i].kill();
+                    }
                     return doDefaultEventLogic(getDescription(),players);
                 }
 

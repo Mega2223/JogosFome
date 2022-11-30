@@ -1,7 +1,6 @@
 package objects;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -19,7 +18,7 @@ public class Game {
             dayLightEvents.add(act);} else {nightlyEvents.add(act);}}
     }
 
-    double percentageNeededToDoSomethingOnTurn = 50;
+    double activePercentageRequired = 80;
 
     public String[] doTurn(){
 
@@ -44,20 +43,25 @@ public class Game {
         }
         List<String> eventsDone = new ArrayList<>();
         List<Player> eventedPlayers = new ArrayList<>();
-        while (eventedPlayers.size() < players.size() *(percentageNeededToDoSomethingOnTurn/100.0)){
+        while (eventedPlayers.size() < players.size() *(activePercentageRequired /100.0)){
             Random r = new Random();
             Event randomEvent = events.get(r.nextInt(events.size()));
             if(randomEvent.playersNeeded() > players.size()){continue;}
             List<Player> random = new ArrayList<>();
+            List<Player> avail = new ArrayList<>(players);
+            avail.removeAll(eventedPlayers);
+            if(avail.size() + random.size() < randomEvent.playersNeeded()){continue;}
             while (random.size() <  randomEvent.playersNeeded()){
-                Player randomPlayer = players.get(r.nextInt(players.size()));
-                if(random.contains(randomPlayer)||eventedPlayers.contains(randomPlayer)){
+                Player randomPlayer = avail.get(r.nextInt(avail.size()));
+                if(random.contains(randomPlayer)){
                     continue;
                 }
+
                 random.add(randomPlayer);
 
             }
             Player[] playersToEvent = new Player[random.size()];
+            if(!randomEvent.canDo(playersToEvent)){continue;}
             playersToEvent = random.toArray(playersToEvent);
             eventsDone.add(randomEvent.doEvent(this,playersToEvent));
             eventedPlayers.addAll(random);

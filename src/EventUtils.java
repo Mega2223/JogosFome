@@ -17,10 +17,12 @@ public class EventUtils {
         for(String act : dayLightMurders){
             ret.add(new Event() {
                 public String doEvent(Game game, Player[] players) {
+
                     for (int i = 0; i < players.length; i++) {
-                        //kill logic
-                        if(players.length/2 >= i){players[i].kill();}
-                    };
+                        //mata exatamente a metade que fica do lado direito da array
+                        if(players.length/2 <= i){
+                            players[i].kill();}
+                    }
                     return doDefaultEventLogic(getDescription(),players);
                 }
                 public String getDescription() {
@@ -103,11 +105,14 @@ public class EventUtils {
             });
         }
 
-        String[] nightTimeDeathsEv = FileUtils.loadTextFile("mortes coletivas.txt").split("\n");
+        String[] nightTimeDeathsEv = FileUtils.loadTextFile("mortesnoturnas.txt").split("\n");
         for (String act: nightTimeDeathsEv){
             ret.add(new Event() {
                 @Override
                 public String doEvent(Game game, Player[] players) {
+                    for (int i = 0; i < players.length; i++) {
+                        players[i].kill();
+                    }
                     return doDefaultEventLogic(getDescription(),players);
                 }
 
@@ -156,7 +161,7 @@ public class EventUtils {
             if(eventSplit[i].equals("")||usedPlayers >= players.length){continue;}
             toBuild += players[usedPlayers] + eventSplit[i];
             usedPlayers++;
-        };
+        }
 
         return toBuild;
 

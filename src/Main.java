@@ -23,22 +23,25 @@ public class Main {
         for (int day = 1; !theGame.ended; day++) {
 
             System.out.println("Começa o dia " + day + ":");
+
             String[] dayTurn = theGame.doTurn();
-            String[] nightTurn = theGame.doTurn();
-
-
-            for (int i = 0; i < dayTurn.length; i++) {
+            for (int i = 0; i < dayTurn.length&&!theGame.ended; i++) {
                 System.out.println(dayTurn[i]);
             }
+            String[] nightTurn = theGame.doTurn();
             System.out.println("O sol se pôs.");
-            for (int i = 0; i < nightTurn.length; i++) {
+            for (int i = 0; i < nightTurn.length&&!theGame.ended; i++) {
                 System.out.println(nightTurn[i]);
             }
 
-            System.out.println("Fim do dia " + day + ".\nSobreviventes: " + theGame.getPlayers());
+            System.out.println("Fim do dia " + day + ".\nSobreviventes: " + theGame.getPlayers() + "\n");
             try{Thread.sleep(600);}catch (InterruptedException ex){}
         }
 
+        String[] lastTurn = theGame.doTurn();
+        for (int i = 0; i < lastTurn.length; i++) {
+            System.out.println(lastTurn[i]);
+        }
     }
 
 }

@@ -20,17 +20,23 @@ public class Main {
 
         Game theGame = new Game(Constants.genPlayers(),events);
 
-        for (int turn = 0; !theGame.ended; turn++) {
-            String[] actTurn = theGame.doTurn();
+        for (int day = 1; !theGame.ended; day++) {
 
-            System.out.println();
-            if(turn%2==0){System.out.println("DIA " + turn/2 + ":");}
-            else{System.out.println("NOITE " + turn/2 + ":");}
+            System.out.println("Começa o dia " + day + ":");
+            String[] dayTurn = theGame.doTurn();
+            String[] nightTurn = theGame.doTurn();
 
-            for (int i = 0; i < actTurn.length; i++) {
-                System.out.println(actTurn[i]);
-                try{Thread.sleep(200);}catch (InterruptedException ex){}
+
+            for (int i = 0; i < dayTurn.length; i++) {
+                System.out.println(dayTurn[i]);
             }
+            System.out.println("O sol se pôs.");
+            for (int i = 0; i < nightTurn.length; i++) {
+                System.out.println(nightTurn[i]);
+            }
+
+            System.out.println("Fim do dia " + day + ".\nSobreviventes: " + theGame.getPlayers());
+            try{Thread.sleep(600);}catch (InterruptedException ex){}
         }
 
     }
